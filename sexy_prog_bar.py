@@ -4,34 +4,8 @@
 
 # 1: imports
 
-import contextlib
-import collections
-import copy
-import gc
-import glob
-import itertools as it
-import matplotlib as mpl
-import matplotlib.cm as mcm
-import matplotlib.colors as mpc
-import matplotlib.pyplot as plt
 import numpy as np
-import numpy.random as nra
-import numpy.linalg as nla
-import os
-import pandas as pd
-import pickle as pk
-#import pynverse
-import re
-import scipy as sp
-import scipy.linalg as sla
-import scipy.sparse as sps
-import sys
 import time
-
-from collections import Counter, defaultdict
-from copy import deepcopy
-from matplotlib.animation import FuncAnimation
-from matplotlib.pyplot import imshow, plot
 
 from numpy import ( angle, arange, arccos, array, arcsin, arctan, arctan2, arctanh, argsort,
                    clip, concatenate, conj, cos, cosh, cumsum, diag, diagonal,
@@ -40,17 +14,8 @@ from numpy import ( angle, arange, arccos, array, arcsin, arctan, arctan2, arcta
                    mean, median, meshgrid, nan_to_num, ones, pi, quantile, real, repeat, rint,
                    sin, sinh, sqrt, std, swapaxes,
                    tan, tanh, tile, trace, unique, vectorize, where, zeros )
-from numpy.linalg import norm
+
 from numpy.random import binomial, rand, randint, randn
-
-#from pynverse import inversefunc
-
-from queue import PriorityQueue
-
-from scipy.linalg import null_space, orth, sqrtm
-from scipy.sparse import csgraph, csr_array, diags, eye as speye, kron as sparkron, lil_array
-from scipy.special import comb, erf, erfinv, expit, factorial, logsumexp, lambertw
-from scipy.stats import entropy
 
 ########################################################################################################################
 
