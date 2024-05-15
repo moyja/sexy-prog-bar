@@ -2,22 +2,9 @@
 
 ########################################################################################################################
 
-# 1: imports
-
-import numpy as np
 import time
 
-from numpy import ( angle, arange, arccos, array, arcsin, arctan, arctan2, arctanh, argsort,
-                   clip, concatenate, conj, cos, cosh, cumsum, diag, diagonal,
-                   einsum, exp, eye, fill_diagonal, flip, imag, ix_, kron,
-                   linspace, log, logical_and, logical_not, logical_or, logical_xor, logspace,
-                   mean, median, meshgrid, nan_to_num, ones, pi, quantile, real, repeat, rint,
-                   sin, sinh, sqrt, std, swapaxes,
-                   tan, tanh, tile, trace, unique, vectorize, where, zeros )
-
 ########################################################################################################################
-
-# 2: clocks
 
 def clockface(seconds):
     # returns time appropriately in hh : mm : ss, mm : ss, or ss format
@@ -45,18 +32,6 @@ def clockface(seconds):
             return str(minutes) + ':' + secstr
     else:
         return houstr + ':' + minstr + ':' + secstr
-
-def oof_bar(i, N):
-    # note that a must be zero to start
-    global last_oof
-    if i == 0:
-        tic(name = 'oof')
-        last_oof = .0
-    elif i == N-1:
-        print()
-    elif i/N > last_oof + .001:
-        last_oof = i/N
-        print('\r' + str(i) + ' / ' + str(N) + ' | t = ' + str(toc(1, name = 'oof')), end ='\r')
     
 def xbar(p, name = 'sexbar'):
     # note that a must be zero to start
