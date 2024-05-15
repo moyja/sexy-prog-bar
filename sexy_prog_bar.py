@@ -50,28 +50,25 @@ def oof_bar(i, N):
         last_oof = i/N
         print('\r' + str(i) + ' / ' + str(N) + ' | t = ' + str(toc(1, name = 'oof')), end ='\r')
     
-def xbar(p, barname = 'bar'):
+def xbar(p, name = 'sexbar'):
     # note that a must be zero to start
     global pastpoint
     L = 60
     
-    if p > 1:
+    if p > 1 or p < 0:
         raise Exception('bar out of bounds')
-        
     elif p == 0:        
-        tic(name = barname)
+        tic(name = name)
         pastpoint = 0
-
     elif L*p - pastpoint > .5:
         pastpoint = int(rint(L*p))
-        elapsed = toc(out_state = 1, name = barname)
+        elapsed = toc(print_time = False, name = name)
         remaining = (1/p-1)*elapsed
         now_time = clockface(elapsed)
         fut_time = clockface(remaining)
         bar = ' '*(7-len(now_time)) + now_time + '  '
         if pastpoint == L:
             print('\r' + bar + 'X' + ' '*(L-4) + chr(187) + '--X      ')
-            #MY_TIMES.pop(barname)
         else:
             if pastpoint >= 4:
                 bar += '>' + ' '*(pastpoint-4) + chr(187) + '-->' + ' '*(L-1-pastpoint) + '<'
