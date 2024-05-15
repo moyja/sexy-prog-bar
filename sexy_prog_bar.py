@@ -34,7 +34,7 @@ def clockface(seconds):
         return houstr + ':' + minstr + ':' + secstr
     
 def xbar(p, name = 'sexbar'):
-    # note that a must be zero to start
+    # note that p must be zero to start
     global pastpoint
     L = 60
     
