@@ -15,42 +15,29 @@ from numpy import ( angle, arange, arccos, array, arcsin, arctan, arctan2, arcta
                    sin, sinh, sqrt, std, swapaxes,
                    tan, tanh, tile, trace, unique, vectorize, where, zeros )
 
-from numpy.random import binomial, rand, randint, randn
-
 ########################################################################################################################
 
 # 2: clocks
 
 def clockface(seconds):
+    # returns time appropriately in hh : mm : ss, mm : ss, or ss format
+  
     seconds = int(seconds)
-    hours = seconds//3600
-    seconds -= 3600 * hours
-    minutes = seconds//60
-    seconds -= 60 * minutes
-    houstr = str(hours)
-    minstr = str(minutes)
-    secstr = str(seconds)
-    if seconds <= 9:
-        secstr = '0' + secstr
-    if minutes <= 9:
-        minstr = '0' + minstr
+    hours = seconds // 3600
+    minutes = (seconds % 3600) // 60
+    seconds = seconds % 60
+
     if hours == 0:
         if minutes == 0:
             if seconds == 0:
-                return ''
+                return '<1s'
             else:
                 return str(seconds)
         else:
             return str(minutes) + ':' + secstr
     else:
         return houstr + ':' + minstr + ':' + secstr
-'''    
-def initialize_clock():
-    global MY_TIMES
-    global pastpoint
-    MY_TIMES = {}
-    pastpoint = 0
-''' 
+
 def oof_bar(i, N):
     # note that a must be zero to start
     global last_oof
@@ -63,7 +50,7 @@ def oof_bar(i, N):
         last_oof = i/N
         print('\r' + str(i) + ' / ' + str(N) + ' | t = ' + str(toc(1, name = 'oof')), end ='\r')
     
-def nubar(p, barname = 'bar'):
+def xbar(p, barname = 'bar'):
     # note that a must be zero to start
     global pastpoint
     L = 60
@@ -99,34 +86,24 @@ def nubar(p, barname = 'bar'):
             print('\r' + bar + '  ' + fut_time + '    ', end ='\r')
 
 
-def tic(out_state = 0, name = 'yommytime'):
-    # out_state = 0 if silent, 1 if returning elapsed time, 2 if printing elapsed time
+def tic(print_time = False, name = 'yommytime'):
     global MY_TIMES
-    
     if 'MY_TIMES' not in globals():
         MY_TIMES = {}
-    
-    if out_state == 0:
-        MY_TIMES[name] = time.time()
-    elif out_state == 1:
-        hold = MY_TIMES[name]
-        MY_TIMES[name] = time.time()
-        return MY_TIMES[name] - hold
-    elif out_state == 2:
-        hold = MY_TIMES[name]
-        MY_TIMES[name] = time.time()
-        print('TIME: ', name, ' :  delta  = ', MY_TIMES[name] - hold)
-    else:
-        raise Exception('unidentified outstate')
-        
 
-def toc(out_state = 2, name = 'yommytime'):
-    # out_state = 0 if silent, 1 if returning elapsed time, 2 if printing elapsed time
-    if out_state == 1:
-        return(time.time() - MY_TIMES[name])
-    elif out_state == 2:
-        print('TIME: ', name, ' = ', time.time() - MY_TIMES[name])
-    else:
-        raise Exception('unidentified outstate')
+    last_time = MY_TIMES[name]
+    MY_TIMES[name] = time.perf_counter()
+    time_diff =  MY_TIMES[name] - last_time
+  
+    if print_time:
+        print('TIME: ', name, ' :  delta  = ', time_diff)
+    return MY_TIMES[name] - hold
+    
+def toc(print_time = True, name = 'yommytime'):
+    time_diff =  time.perf_counter() - MY_TIMES[name]
+  
+    if print_time:
+        print('TIME: ', name, ' :  delta  = ', time_diff)
+    return time_diff
 
 ########################################################################################################################
