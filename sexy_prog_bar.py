@@ -21,16 +21,24 @@ from numpy import ( angle, arange, arccos, array, arcsin, arctan, arctan2, arcta
 
 def clockface(seconds):
     # returns time appropriately in hh : mm : ss, mm : ss, or ss format
-  
     seconds = int(seconds)
+  
     hours = seconds // 3600
     minutes = (seconds % 3600) // 60
     seconds = seconds % 60
-
+  
+    houstr = str(hours)
+    minstr = str(minutes)
+    secstr = str(seconds)
+    if seconds <= 9:
+        secstr = '0' + secstr
+    if minutes <= 9:
+        minstr = '0' + minstr
+      
     if hours == 0:
         if minutes == 0:
             if seconds == 0:
-                return '<1s'
+                return ''
             else:
                 return str(seconds)
         else:
@@ -89,7 +97,7 @@ def tic(print_time = False, name = 'yommytime'):
         MY_TIMES = {}
 
     last_time = MY_TIMES[name]
-    MY_TIMES[name] = time.perf_counter()
+    MY_TIMES[name] = time.time()
     time_diff =  MY_TIMES[name] - last_time
   
     if print_time:
@@ -97,7 +105,7 @@ def tic(print_time = False, name = 'yommytime'):
     return MY_TIMES[name] - hold
     
 def toc(print_time = True, name = 'yommytime'):
-    time_diff =  time.perf_counter() - MY_TIMES[name]
+    time_diff =  time.time() - MY_TIMES[name]
   
     if print_time:
         print('TIME: ', name, ' :  delta  = ', time_diff)
