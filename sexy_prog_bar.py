@@ -35,6 +35,7 @@ def clockface(seconds):
     
 def xbar(p, name = 'sexbar'):
     # note that p must be zero to start
+    # should probably optimize for gpu by removing the calls to global variable except on updates
     global pastpoint
     L = 60
     
@@ -77,7 +78,7 @@ def tic(print_time = False, name = 'yommytime'):
   
     if print_time:
         print('TIME: ', name, ' :  delta  = ', time_diff)
-    return MY_TIMES[name] - hold
+    return time_diff
     
 def toc(print_time = True, name = 'yommytime'):
     time_diff =  time.time() - MY_TIMES[name]
