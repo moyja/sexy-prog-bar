@@ -25,7 +25,7 @@ def clockface(seconds):
     if hours == 0:
         if minutes == 0:
             if seconds == 0:
-                return ''
+                return '<1s'
             else:
                 return str(seconds)
         else:
