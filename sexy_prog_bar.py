@@ -69,7 +69,7 @@ def xbar(p, name = 'sexbar'):
 def tic(print_time = False, name = 'yommytime'):
     global MY_TIMES
     if 'MY_TIMES' not in globals():
-        MY_TIMES = {}
+        MY_TIMES = {name : time.time()}
 
     last_time = MY_TIMES[name]
     MY_TIMES[name] = time.time()
