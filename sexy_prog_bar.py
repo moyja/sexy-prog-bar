@@ -48,7 +48,7 @@ def xbar(p, name = 'sexbar'):
     if p > 1 or p < 0:
         raise Exception('bar out of bounds')
     
-    if p <= PAST_POINTS[name]: 
+    if p == 0 or p < PAST_POINTS[name]: 
         tic(name = name)
         PAST_POINTS[name] = p
     elif int(L * p) > int(L * PAST_POINTS[name]):
