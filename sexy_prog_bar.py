@@ -60,22 +60,22 @@ def xbar(p, name = 'sexbar'):
         now_time = clockface(elapsed)
         fut_time = clockface(remaining)
 
-        bar = ' ' + now_time + '  '
+        bar = '  ' + now_time + '  '
         
         if tick >= L - 1:
-            print('\r' + bar + 'X' + ' '*(L-6) + chr(187) + '--X      ', end = '')
-        else:
-            if tick >= 4:
-                bar += '>' + ' '*(tick - 5) + chr(187) + '-->' + ' '*(L - 2 - tick) + '<'
-            elif tick == 3:
-                bar += '>' + '-->' + ' '*(L-5) + '<'
-            elif tick == 2:
-                bar += '>' + '->' + ' '*(L-4) + '<'
-            elif tick == 1:
-                bar += '>' + '>' + ' '*(L-3) + '<'
-            elif tick == 0:
-                bar += '>' + ' '*(L-2) + '<'
-            print('\r' + bar + '  ' + fut_time + '    ', end = '')
+            bar += 'X' + ' '*(L-6) + chr(187) + '--X'
+        elif tick >= 4:
+            bar += '>' + ' '*(tick - 5) + chr(187) + '-->' + ' '*(L - 2 - tick) + '<'
+        elif tick == 3:
+            bar += '>' + '-->' + ' '*(L-5) + '<'
+        elif tick == 2:
+            bar += '>' + '->' + ' '*(L-4) + '<'
+        elif tick == 1:
+            bar += '>' + '>' + ' '*(L-3) + '<'
+        elif tick == 0:
+            bar += '>' + ' '*(L-2) + '<'
+            
+        print('\r' + bar + '  ' + fut_time + '  ', end = '')
 
 def tic(print_time = False, name = 'yommytime'):
     if name not in MY_TIMES:
