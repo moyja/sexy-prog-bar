@@ -63,7 +63,7 @@ def xbar(p, name = 'sexbar'):
         bar = ' ' + now_time + '  '
         
         if tick >= L - 1:
-            print('\r' + bar + 'X' + ' '*(L-6) + chr(187) + '--X      ')
+            print('\r' + bar + 'X' + ' '*(L-6) + chr(187) + '--X      ', end = '')
         else:
             if tick >= 4:
                 bar += '>' + ' '*(tick - 5) + chr(187) + '-->' + ' '*(L - 2 - tick) + '<'
@@ -75,7 +75,7 @@ def xbar(p, name = 'sexbar'):
                 bar += '>' + '>' + ' '*(L-3) + '<'
             elif tick == 0:
                 bar += '>' + ' '*(L-2) + '<'
-            print('\r' + bar + '  ' + fut_time + '    ', end ='\r')
+            print('\r' + bar + '  ' + fut_time + '    ', end = '')
 
 def tic(print_time = False, name = 'yommytime'):
     if name not in MY_TIMES:
