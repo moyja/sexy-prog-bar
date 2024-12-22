@@ -42,23 +42,24 @@ def clockface(seconds):
     
 def xbar(p, name = 'sexbar'):
     if name not in PAST_POINTS:
-        PAST_POINTS[name] = 0
+        PAST_POINTS[name] = 1
 
     L = 60
+    num_updates = 10000
     if p > 1 or p < 0:
         raise Exception('bar out of bounds')
     
-    if p == 0 or p < PAST_POINTS[name]: 
+    if p < PAST_POINTS[name]: # implying that we are starting a new bar
         tic(name = name)
         PAST_POINTS[name] = p
-    elif int(L * p) > int(L * PAST_POINTS[name]):
+    elif p - PAST_POINTS[name] > 1 / num_updates:
         PAST_POINTS[name] = p
         tick = int(L * p)
         elapsed = toc(print_time = False, name = name)
-        remaining = (1/p-1)*elapsed
+        remaining = (1 / p - 1)*elapsed
         now_time = clockface(elapsed)
         fut_time = clockface(remaining)
-        # bar = ' '*(7-len(now_time)) + now_time + '  '
+
         bar = ' ' + now_time + '  '
         
         if tick >= L - 1:
