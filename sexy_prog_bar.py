@@ -44,7 +44,7 @@ def xbar(p, name = 'sexbar'):
     if name not in PAST_POINTS:
         PAST_POINTS[name] = 1
 
-    L = 60
+    L = 50
     num_updates = 10000
     if p > 1 or p < 0:
         raise Exception('bar out of bounds')
@@ -74,10 +74,10 @@ def xbar(p, name = 'sexbar'):
             bar += '>' + '>' + ' '*(L-3) + '<'
         elif tick == 0:
             bar += '>' + ' '*(L-2) + '<'
-            
+
         print('\r' + bar + '  ' + fut_time + '  ', end = '')
 
-def tic(print_time = False, name = 'yommytime'):
+def tic(print_time = False, name = 't'):
     if name not in MY_TIMES:
         MY_TIMES[name] = time.time()
 
@@ -86,14 +86,23 @@ def tic(print_time = False, name = 'yommytime'):
     time_diff =  MY_TIMES[name] - last_time
   
     if print_time:
-        print('TIME:', name, ': delta =', time_diff)
+        if time_diff < 1:
+            print('TIME: ', name, ' = ', time_diff)
+        else:
+            print('TIME: ', name, ' = ', clockface(time_diff))
+
     return time_diff
     
-def toc(print_time = True, name = 'yommytime'):
+def toc(print_time = True, name = 't'): 
     time_diff =  time.time() - MY_TIMES[name]
   
     if print_time:
-        print('TIME:', name, ': delta =', time_diff)
+        if time_diff < 1:
+            print('TIME: ', name, ' = ', time_diff)
+        else:
+            print('TIME: ', name, ' = ', clockface(time_diff))
+
     return time_diff
 
 ########################################################################################################################
+
