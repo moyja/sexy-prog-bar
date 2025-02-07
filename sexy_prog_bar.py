@@ -49,10 +49,11 @@ def xbar(p, name = 'sexbar'):
     if p > 1 or p < 0:
         raise Exception('bar out of bounds')
     
-    if p == 0 or p < PAST_POINTS[name]: # implying that we are starting a new bar
+    #if p == 0 or p < PAST_POINTS[name: # implying that we are starting a new bar
+    if p == 0: # implying that we are starting a new bar
         tic(name = name)
         PAST_POINTS[name] = p
-    elif p - PAST_POINTS[name] > 1 / num_updates:
+    elif int(L * PAST_POINTS[name]) != int(L * p):
         PAST_POINTS[name] = p
         tick = int(L * p)
         elapsed = toc(print_time = False, name = name)
