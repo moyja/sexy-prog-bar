@@ -53,7 +53,7 @@ def xbar(p, name = 'sexbar'):
     if p == 0: # implying that we are starting a new bar
         tic(name = name)
         PAST_POINTS[name] = p
-    elif int(L * PAST_POINTS[name]) != int(L * p):
+    elif int(num_updates * PAST_POINTS[name]) != int(num_updates * p):
         PAST_POINTS[name] = p
         tick = int(L * p)
         elapsed = toc(print_time = False, name = name)
