@@ -87,7 +87,7 @@ def tic(print_time = False, name = 't'):
     time_diff =  MY_TIMES[name] - last_time
   
     if print_time:
-        if time_diff < 1:
+        if time_diff < 60:
             print('TIME: ', name, ' = ', time_diff)
         else:
             print('TIME: ', name, ' = ', clockface(time_diff))
