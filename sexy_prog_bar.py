@@ -98,7 +98,7 @@ def toc(print_time = True, name = 't'):
     time_diff =  time.time() - MY_TIMES[name]
   
     if print_time:
-        if time_diff < 1:
+        if time_diff < 60:
             print('TIME: ', name, ' = ', time_diff)
         else:
             print('TIME: ', name, ' = ', clockface(time_diff))
